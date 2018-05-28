@@ -48,7 +48,6 @@ class HtmlReport extends Report
      * @return string
      */
     protected function createRow($rowElements) {
-        var_dump($rowElements);
         array_walk_recursive($rowElements, function(&$cell) {
             $cell =  "<td>{$cell}</td>";
         });

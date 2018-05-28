@@ -33,7 +33,7 @@ class Parser
     public function setBaseURL($url)
     {
         if (filter_var($url, FILTER_VALIDATE_URL) === false) {
-            die("Please provide a valid url. Example --url http://example.com\n");
+            die("Please provide a valid url. Example: http://example.com\n");
         }
 
         $parsed = parse_url($url);
@@ -101,6 +101,7 @@ class Parser
             return;
         }
         try {
+            libxml_use_internal_errors(true);
             Timer::startTimer();
             $dom = new \DOMDocument;
             $dom->loadHTML($content);
@@ -114,6 +115,7 @@ class Parser
 
             $images = $dom->getElementsByTagName('img');
             Timer::stopTimer();
+            libxml_use_internal_errors(false);
             $this->crawler->getHtmlReport()->addPageData($url, $images->length);
 
         } catch (\Throwable $e) {

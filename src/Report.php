@@ -42,6 +42,10 @@ abstract class Report
         });
     }
 
+    public function getPageData()
+    {
+        return $this->pageData;
+    }
 
     public function addPageData($url, $amountOfImages)
     {

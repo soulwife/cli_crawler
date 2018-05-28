@@ -6,13 +6,6 @@ class Crawler
 {
 
     /**
-     *
-     *
-     * @var array
-     */
-    protected $pageData = [];
-
-    /**
      * Links to parse
      *
      * @var array
@@ -51,15 +44,15 @@ class Crawler
 
     public function __construct()
     {
-        $domain = getopt("u:") ?? null;
+        $domain = getenv("url") ?? null;
 
         if (! $domain) {
-            die("Please specify a url. Example: php crawler.php -u http://example.com\n");
+            die("Please specify a url. Example: url=http://example.com php crawler.php\n");
         }
 
         $this->parser = new Parser($this);
         $this->htmlReport = new HtmlReport();
-        $this->parser->setBaseURL($domain['u']);
+        $this->parser->setBaseURL($domain);
         $this->addLink($this->parser->getBaseUrl());
         $this->getDomainData();
         $this->htmlReport->createReport();
