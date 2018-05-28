@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="./autoload.php" colors = "true" verbase="true" stopOnFailute="false">
+    <testsuites>
+        <testsuite name="Application Test Suite">
+            <directory>./tests/Crawler/</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <env name="u" value="https://travellizy.com/"/>
+    </php>
+</phpunit>
