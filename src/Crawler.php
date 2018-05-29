@@ -44,7 +44,7 @@ class Crawler
 
     public function __construct()
     {
-        // Get url from command line
+        //get url from command line
         $domain = getenv("url") ?? null;
 
         if (! $domain) {

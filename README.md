@@ -38,7 +38,7 @@ Enjoy!
 TODO:
 ----------------
 
-Add Composer and Psr Logger (when it will be out of TT)
-Add Docker
-Add more tests 
-Add other report formats
+*  Add Composer and Psr Logger (when it will be out of TT)
+*  Add Docker...after Composer ;)
+*  Add more tests 
+*  Add other report formats
