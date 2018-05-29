@@ -20,6 +20,12 @@ class Parser
      */
     protected $baseUrl;
 
+    /**
+     * Initial url without protocol
+     *
+     * @var string
+     */
+    protected $baseUrlWithoutProtocol;
 
 
     public function __construct(Crawler $crawler)
@@ -39,6 +45,8 @@ class Parser
         }
 
         $parsed = parse_url($url);
+        $this->baseUrlWithoutProtocol = $parsed['host'] . '/';
+
         $this->baseUrl = "{$parsed['scheme']}://{$parsed['host']}";
         $this->baseUrl .= $parsed['port'] ? ":{$parsed['port']}" : '';
         $this->baseUrl .= '/';
@@ -46,8 +54,6 @@ class Parser
         $urlPathQuery = $parsed['path'] ? "{$parsed['path']}/" : '';
         $urlPathQuery.= $parsed['query'] ? "?{$parsed['query']}" : '';
 
-
-        // Add the first url to the stack
         $this->baseUrl = $this->baseUrl.trim($urlPathQuery, '/');
     }
 
@@ -70,7 +76,7 @@ class Parser
      */
     protected function parseLink(string $link, string $parentLink): bool
     {
-        if (! $link || $link === '/' || $link[0] === '#' || $link === 'javascript:;') {
+        if (! $link || $link === '/' || $link === 'javascript:;') {
             return false;
         }
 
@@ -82,7 +88,7 @@ class Parser
 
         if (strpos($link, 'http') !== false) {
             // Ignore external URLs
-            if (strpos($link, $this->baseUrl) === false) {
+            if (strpos($link, $this->baseUrlWithoutProtocol) === false) {
                 return false;
             }
         } else {

@@ -2,14 +2,18 @@ CLI web crawler
 ========================
 
 Crawl domain and get reports without any library or dependencies (no CURL, no [PSR Log](https://github.com/php-fig/log), even no Composer).
-(specification of TT, you know).
+(specification of TT, you know). Requires PHP7.+
 
-**What's inside?** 
---------------
 
 How to
 ----------------
-Please specify a url and run script. Example: url=http://example.com php crawler.php
+Please specify an url and run a script. Example: 
+
+`url=http://example.com php crawler.php`
+
+Or with Docker:
+
+`docker run --rm -v $(pwd):/app -w /app -e url='https://example.com/' php:cli php crawler.php`
  
 
 What's going on here?
@@ -26,7 +30,7 @@ What's going on here?
 
 Report consists
 ----------------
-  * Page url;
+  * Page url
 
   * Amount of images
 
@@ -38,7 +42,8 @@ Enjoy!
 TODO:
 ----------------
 
-*  Add Composer and Psr Logger (when it will be out of TT)
-*  Add Docker...after Composer ;)
-*  Add more tests 
-*  Add other report formats
+ Add Composer and Psr Logger (when it will be out of TT)
+
+ Add more tests 
+
+ Add other report formats
