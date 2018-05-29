@@ -1,8 +1,8 @@
 CLI web crawler
 ========================
 
-Crawl domain and get reports without any library or dependencies (no CURL, no [PSR Log](https://github.com/php-fig/log), even no Composer).
-(specification of TT, you know). Requires PHP7.+
+Crawl domain and get reports without any library or dependencies (no сURL, no [PSR Log](https://github.com/php-fig/log), even no Composer).
+(specification of TT, you know). Requires PHP 7.+
 
 
 How to
@@ -42,8 +42,8 @@ Enjoy!
 TODO:
 ----------------
 
-[ ]  Add Composer and Psr Logger (when it will be out of TT)
+-[ ]  Add Composer and Psr Logger (when it will be out of TT)
 
-[ ]  Add more tests 
+-[ ]  Add more tests 
 
-[ ] Add other report formats
+-[ ] Add other report formats
