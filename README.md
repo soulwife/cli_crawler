@@ -42,8 +42,8 @@ Enjoy!
 TODO:
 ----------------
 
--[ ]  Add Composer and Psr Logger (when it will be out of TT)
+- [ ]  Add Composer and Psr Logger (when it will be out of TT)
 
--[ ]  Add more tests 
+- [ ]  Add more tests 
 
--[ ] Add other report formats
+- [ ] Add other report formats
