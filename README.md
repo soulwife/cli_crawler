@@ -21,18 +21,18 @@ What's going on here?
 
  * App crawls all domain pages
  
- * Get amount of images for each page
+ * Gets amount of images for each page
  
- * Create report report_dd.mm.YYYY.html with sorted by amount of images data table
+ * Creates report (report_dd.mm.YYYY.html) with sorted by amount of images data table
  
- * Log errors to logger.log
+ * Logs errors to logger.log
  
 
 Report consists
 ----------------
   * Page url
 
-  * Amount of images
+  * Amount of images on page
 
   * Page processing time
 
@@ -42,8 +42,8 @@ Enjoy!
 TODO:
 ----------------
 
- Add Composer and Psr Logger (when it will be out of TT)
+[ ]  Add Composer and Psr Logger (when it will be out of TT)
 
- Add more tests 
+[ ]  Add more tests 
 
- Add other report formats
+[ ] Add other report formats
