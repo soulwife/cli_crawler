@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: constellation
- * Date: 5/28/18
- * Time: 13:24
- */
 
 namespace Soulwife\Crawler;
 
@@ -12,28 +6,45 @@ namespace Soulwife\Crawler;
 class HtmlReport extends Report
 {
 
-    protected function createTable()
+    /**
+     * Create report table from $pageData
+     *
+     * @return string
+     */
+    protected function createTable(): string
     {
         $tableRows = $this->createRows();
 
-        return $tableRows ? "<table border='1'><tr><th>URL</th><th>Images</th><th>Time (s)</th></tr> {$tableRows} </table>" : 'There is no data';
+        return $tableRows ? "<table border='1'><tr><th>URL</th><th>Images</th><th>Time (s)</th></tr> {$tableRows} </table>" : 'There is no data. Please see logger.log';
     }
 
-    protected function createHeader()
+    /**
+     * Create html page header
+     *
+     * @return string
+     */
+    protected function createHeader(): string
     {
         return '<!DOCTYPE html><html lang="en"><body>';
     }
 
-    protected function createFooter()
+    /**
+     * Create html page footer
+     *
+     * @return string
+     */
+    protected function createFooter(): string
     {
         return '</body></html>';
     }
 
     /**
-     * Create table rows
+     * Create table rows from $pageData
+     *
      * @return string
      */
-    protected function createRows() {
+    protected function createRows(): string
+    {
         $tableRows = "";
         foreach ($this->pageData as $row) {
             $tableRows .= "<tr>" . implode("", $this->createRow($row)) . "</tr>";
@@ -43,11 +54,13 @@ class HtmlReport extends Report
     }
 
     /**
+     * Create one row for report table
      *
      * @param array $rowElements
-     * @return string
+     * @return array
      */
-    protected function createRow($rowElements) {
+    protected function createRow($rowElements): array
+    {
         array_walk_recursive($rowElements, function(&$cell) {
             $cell =  "<td>{$cell}</td>";
         });
@@ -55,7 +68,5 @@ class HtmlReport extends Report
         return $rowElements;
 
     }
-
-
 
 }

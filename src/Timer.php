@@ -2,28 +2,27 @@
 
 namespace Soulwife\Crawler;
 
-
 class Timer
 {
 
     /**
      *
      *
-     * @var string
+     * @var float
      */
     static protected $startTime = 0;
 
     /**
      *
      *
-     * @var string
+     * @var float
      */
     static protected $finishTime = 0;
 
     /**
      *
      *
-     * @var string
+     * @var float
      */
     static protected $totalTime = 0;
 
@@ -38,7 +37,10 @@ class Timer
         static::$finishTime = microtime(true);
     }
 
-    static public function getTime()
+    /**
+     * @return float
+     */
+    static public function getTime(): float
     {
         return static::$finishTime - static::$startTime;
     }

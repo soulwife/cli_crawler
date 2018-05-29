@@ -13,7 +13,7 @@ class Crawler
     protected $links = [];
 
     /**
-     *
+     * Crawled links
      *
      * @var array
      */
@@ -21,9 +21,9 @@ class Crawler
 
 
     /**
+     * Stream context for file_get_contents
      *
-     *
-     * @var string
+     * @var resource
      */
     protected $context;
 
@@ -44,6 +44,7 @@ class Crawler
 
     public function __construct()
     {
+        // Get url from command line
         $domain = getenv("url") ?? null;
 
         if (! $domain) {
@@ -52,33 +53,55 @@ class Crawler
 
         $this->parser = new Parser($this);
         $this->htmlReport = new HtmlReport();
+        //define initial url to get absolute paths and filter internal links
         $this->parser->setBaseURL($domain);
         $this->addLink($this->parser->getBaseUrl());
+        //crawl pages and parse data for report
         $this->getDomainData();
+        //create report
         $this->htmlReport->createReport();
 
     }
 
-    public function getLinks()
+    /**
+     * @return array
+     */
+    public function getLinks(): array
     {
         return $this->links;
     }
 
-    public function getHtmlReport()
+    /**
+     * @return HtmlReport
+     */
+    public function getHtmlReport(): HtmlReport
     {
         return $this->htmlReport;
     }
 
-    public function addLink($link)
+    /**
+     * @param string $link
+     * @return Crawler
+     */
+    public function addLink(string $link): Crawler
     {
-        return $this->links[] = $link;
+        $this->links[] = $link;
+
+        return $this;
     }
 
-    public function getCrawledLinks()
+    /**
+     * @return array
+     */
+    public function getCrawledLinks(): array
     {
         return $this->crawledLinks;
     }
 
+    /**
+     * Create stream context for file_get_contents
+     *
+     */
     protected function createContext()
     {
         $opts = array(
@@ -98,13 +121,12 @@ class Crawler
     }
 
     /**
-     * Get content.
+     * Get page content
      *
      * @param string $url
-     *
-     * @return string The status of the response.
+     * @return string
      */
-    protected function getContent($url)
+    protected function getContent(string $url): string
     {
         try {
             $content = file_get_contents($url, false, $this->context);
@@ -122,9 +144,8 @@ class Crawler
 
 
     /**
-     * Start the crawler.
+     * Crawl domain pages and parse data
      *
-     * @return void
      */
     protected function getDomainData()
     {

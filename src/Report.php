@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: constellation
- * Date: 5/28/18
- * Time: 16:48
- */
 
 namespace Soulwife\Crawler;
 
@@ -19,7 +13,7 @@ abstract class Report
     const FILE_EXT = 'html';
 
     /**
-     *
+     * Report data
      *
      * @var array
      */
@@ -31,6 +25,10 @@ abstract class Report
 
     abstract protected function createFooter();
 
+    /**
+     * Sort report data by amount of images
+     *
+     */
     protected function sortByAmountOfImages()
     {
         usort($this->pageData, function($a, $b){
@@ -42,12 +40,19 @@ abstract class Report
         });
     }
 
-    public function getPageData()
+    /**
+     * @return array
+     */
+    public function getPageData(): array
     {
         return $this->pageData;
     }
 
-    public function addPageData($url, $amountOfImages)
+    /**
+     * @param string $url
+     * @param int $amountOfImages
+     */
+    public function addPageData(string $url, int $amountOfImages)
     {
         $this->pageData[] = [
             self::PAGE_URL_FIELD => $url,
@@ -56,7 +61,10 @@ abstract class Report
         ];
     }
 
-    protected function addDataToReport()
+    /**
+     * @return string
+     */
+    protected function addDataToReport(): string
     {
         $report = $this->createHeader();
         $report .= $this->createTable();
@@ -65,6 +73,9 @@ abstract class Report
         return $report;
     }
 
+    /**
+     * Create report file and write data into it
+     */
     public function createReport()
     {
         $currentDate = new \DateTime();

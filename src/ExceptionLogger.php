@@ -11,6 +11,11 @@ namespace Soulwife\Crawler;
 
 class ExceptionLogger {
 
+    /**
+     * Log exceptions to logger.log file
+     *
+     * @param \Throwable $e
+     */
     public static function log(\Throwable $e)
     {
         $output = 'File: ' . $e->getFile() . PHP_EOL;
